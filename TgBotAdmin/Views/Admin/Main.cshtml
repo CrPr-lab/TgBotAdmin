@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Главная";
+}
+
+    <form method="post" asp-controller="Admin" asp-action="GetMe">
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <label class="sr-only" for="inlineFormInput">Token</label>
+                <input type="text" class="form-control mb-2" id="inlineFormInput" name="token" placeholder="Token">
+            </div>
+                       
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-2">GetMe</button>
+            </div>
+        </div>
+    </form>

@@ -28,10 +28,16 @@ namespace TgBotAdmin
             }
 
             app.UseRouting();
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
-            {               
-                endpoints.MapDefaultControllerRoute();
+            {
+                endpoints.MapControllerRoute(
+                    name: "Main",
+                    pattern: "{controller=Admin}/{action=Main}");
+
+                //endpoints.MapDefaultControllerRoute();
+                //endpoints.MapFallbackToController("Main", "Admin");
             });
         }
     }
