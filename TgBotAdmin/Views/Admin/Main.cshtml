@@ -1,12 +1,13 @@
-﻿@{
+﻿@model string
+@{
     ViewData["Title"] = "Главная";
 }
 
     <form method="post" asp-controller="Admin" asp-action="GetMe">
         <div class="form-row align-items-center">
             <div class="col-auto">
-                <label class="sr-only" for="inlineFormInput">Token</label>
-                <input type="text" class="form-control mb-2" id="inlineFormInput" name="token" placeholder="Token">
+                <label class="sr-only" for="tokenInput">Token</label>
+                <input type="text" class="form-control mb-2" id="tokenInput" name="token" placeholder="Token" value="1273497115:AAFO8svVdoT-Y_dAXHF3zfQu9XH5Y6yiHIY">
             </div>
                        
             <div class="col-auto">
@@ -14,3 +15,7 @@
             </div>
         </div>
     </form>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Example textarea</label><pre>
+<textarea class="form-control" id="exampleFormControlTextarea1" rows="8" readonly>@Model</textarea></pre>
+    </div>
