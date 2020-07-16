@@ -77,7 +77,7 @@ namespace TgBotAdmin.Controllers
             User user = await Bot.GetMeAsync();
             UserProfilePhotos userProfilePhotos = await Bot.GetUserProfilePhotosAsync(user.Id);
             File file = await Bot.GetFileAsync(userProfilePhotos.Photos[0][0].FileId);
-            return View("Main", file.FilePath);
+            return Content(file.FilePath);
         }
 
     }

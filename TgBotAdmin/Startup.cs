@@ -34,7 +34,7 @@ namespace TgBotAdmin
             {
                 endpoints.MapControllerRoute(
                     name: "Main",
-                    pattern: "{controller=Admin}/{action=Main}");
+                    pattern: "{controller=Admin}/{action=Main}/{token?}");
 
                 //endpoints.MapDefaultControllerRoute();
                 //endpoints.MapFallbackToController("Main", "Admin");
