@@ -25,9 +25,9 @@ namespace TgBotAdmin.Controllers
 
 
 
-        private async Task<string> ExecQueryAsync(string token, string ApiCommand)
+        private async Task<string> ExecQueryAsync(string ApiCommand)
         {
-            string url = UrlBase + token + "/" + ApiCommand;
+            string url = UrlBase + Token + "/" + ApiCommand;
 
             var httpClient = new HttpClient();
             HttpResponseMessage response = await httpClient.GetAsync(url);
@@ -55,7 +55,22 @@ namespace TgBotAdmin.Controllers
             //var x = JsonConvert.SerializeObject(resp, Formatting.Indented);
             //return View("Main", resp);
 
-            return View("Main", await ExecQueryAsync(token, "GetMe"));
+            return View("Main", await ExecQueryAsync("GetMe"));
+        }
+        public async Task<IActionResult> GetWebhookInfo()
+        {
+            if (string.IsNullOrEmpty(Token))
+                return View("Main", "Не задан токен!");
+            else
+                return View("Main", await ExecQueryAsync("GetWebhookInfo"));
+        }
+
+        public async Task<IActionResult> GetUpdates()
+        {
+            if (string.IsNullOrEmpty(Token))
+                return View("Main", "Не задан токен!");
+            else
+                return View("Main", await ExecQueryAsync("GetUpdates"));
         }
 
         public async Task<IActionResult> SetBotToken(string token)

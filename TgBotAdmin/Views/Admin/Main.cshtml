@@ -4,17 +4,29 @@
 }
 
     <form method="post" asp-controller="Admin" asp-action="GetMe">
-        <div class="form-row align-items-center">
-            <div class="col-auto">
-                <label class="sr-only" for="tokenInput">Token</label>
-                <input type="text" class="form-control mb-2" id="tokenInput" name="token" placeholder="Token" value="1273497115:AAFO8svVdoT-Y_dAXHF3zfQu9XH5Y6yiHIY" required>
-            </div>
-                       
+        <div class="form-row align-items-center">            
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary mb-2">GetMe</button>
             </div>
         </div>
     </form>
+
+    <form method="post" asp-controller="Admin" asp-action="GetWebhookInfo">
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-2">GetWebhookInfo</button>
+            </div>
+        </div>
+    </form>
+
+    <form method="post" asp-controller="Admin" asp-action="GetUpdates">
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-2">GetUpdates</button>
+            </div>
+        </div>
+    </form>
+
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Example textarea</label><pre>
 <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" readonly>@Model</textarea></pre>
