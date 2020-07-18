@@ -34,7 +34,8 @@ namespace TgBotAdmin
             {
                 endpoints.MapControllerRoute(
                     name: "Main",
-                    pattern: "{controller=Admin}/{action=Main}/{token?}");
+                    pattern: "{controller=Admin}/{action=Main}/{token:regex(^\\d{{10}}:[\\w\\-]{{35}}$)?}");
+                
 
                 //endpoints.MapDefaultControllerRoute();
                 //endpoints.MapFallbackToController("Main", "Admin");

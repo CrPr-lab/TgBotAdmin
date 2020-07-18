@@ -15,23 +15,15 @@ namespace TgBotAdmin.Controllers
     public class AdminController : Controller
     {
         const string UrlBase = "https://api.telegram.org/bot";
+
+        private static string Token;
+
         public IActionResult Main()
         {
             return View();
         }
 
 
-        //private async Task<string> ExecQueryAsync(string token, string ApiCommand)
-        //{
-        //    string url = "https://api.telegram.org/bot" + token + "/" + ApiCommand;
-
-        //    var httpClient = new HttpClient();
-        //    //var Proxy = new WebProxy("http://205.144.171.10:8443");
-        //    //HttpClient.DefaultProxy = Proxy;
-        //    HttpResponseMessage response = httpClient.GetAsync(url).Result;
-
-        //    return await response.Content.ReadAsStringAsync();
-        //}
 
         private async Task<string> ExecQueryAsync(string token, string ApiCommand)
         {
@@ -63,16 +55,12 @@ namespace TgBotAdmin.Controllers
             //var x = JsonConvert.SerializeObject(resp, Formatting.Indented);
             //return View("Main", resp);
 
-            ITelegramBotClient Bot = new TelegramBotClient(token, new WebProxy("127.0.0.1:8888"));
-            User user = Bot.GetMeAsync().Result;
-            UserProfilePhotos userProfilePhotos = await Bot.GetUserProfilePhotosAsync(user.Id);
-            File file = await Bot.GetFileAsync(userProfilePhotos.Photos[0][0].FileId);
-
-            return View("Main", file.FilePath);
+            return View("Main", await ExecQueryAsync(token, "GetMe"));
         }
 
-        public async Task<IActionResult> GetBotPictLink(string token)
+        public async Task<IActionResult> SetBotToken(string token)
         {
+            Token = token;
             ITelegramBotClient Bot = new TelegramBotClient(token, new WebProxy("127.0.0.1:8888"));
             User user = await Bot.GetMeAsync();
             UserProfilePhotos userProfilePhotos = await Bot.GetUserProfilePhotosAsync(user.Id);
