@@ -1,33 +1,29 @@
-﻿@model string
-@{
+﻿@{
     ViewData["Title"] = "Главная";
 }
 
-    <form method="post" asp-controller="Admin" asp-action="GetMe">
-        <div class="form-row align-items-center">            
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-2">GetMe</button>
-            </div>
+    <div class="form-row align-items-center">            
+        <div class="col-auto">
+            <button class="btn btn-primary mb-2" data-tg-command="GetMe">Get Me</button>
         </div>
-    </form>
+    </div>
 
-    <form method="post" asp-controller="Admin" asp-action="GetWebhookInfo">
-        <div class="form-row align-items-center">
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-2">GetWebhookInfo</button>
-            </div>
+    
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <button class="btn btn-primary mb-2" data-tg-command="GetWebhookInfo">Get Webhook Info</button>
         </div>
-    </form>
+    </div>
 
-    <form method="post" asp-controller="Admin" asp-action="GetUpdates">
-        <div class="form-row align-items-center">
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-2">GetUpdates</button>
-            </div>
+    
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <button class="btn btn-primary mb-2" data-tg-command="GetUpdates">Get Updates</button>
         </div>
-    </form>
+    </div>
+
 
     <div class="form-group">
-        <label for="exampleFormControlTextarea1">Example textarea</label><pre>
-<textarea class="form-control" id="exampleFormControlTextarea1" rows="8" readonly>@Model</textarea></pre>
+        <label for="TextareaOutput">Example textarea</label><pre>
+        <textarea class="form-control" id="TextareaOutput" rows="8" readonly></textarea></pre>
     </div>

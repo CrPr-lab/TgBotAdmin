@@ -22,56 +22,21 @@ namespace TgBotAdmin.Controllers
         {
             return View();
         }
+        
 
-
-
-        private async Task<string> ExecQueryAsync(string ApiCommand)
+        [Route("Admin/ExecuteTgCommand/{command}")]
+        public async Task<IActionResult> ExecuteTgCommand(string command, string parms)
         {
-            string url = UrlBase + Token + "/" + ApiCommand;
+            if (string.IsNullOrEmpty(Token))
+                return Content("Не задан токен!");
+            
+            string url = UrlBase + Token + "/" + command + (parms == null ? ("") : ("?" + parms));
 
             var httpClient = new HttpClient();
             HttpResponseMessage response = await httpClient.GetAsync(url);
-
-            return await response.Content.ReadAsStringAsync();
+            return Content(await response.Content.ReadAsStringAsync());                        
         }
 
-        //private void GetMethods(object obj)
-        //{
-        //    Type objType = obj.GetType();
-        //    PropertyInfo[] propInfos = objType.GetProperties(BindingFlags.Public | BindingFlags.DeclaredOnly);
-        //    //propInfos[0].GetValue
-        //}
-
-        // 1273497115:AAFO8svVdoT-Y_dAXHF3zfQu9XH5Y6yiHIY
-
-        public async Task<IActionResult> GetMe(string token)
-        {
-            //ITelegramBotClient Bot = new TelegramBotClient(token);
-            //User user = Bot.GetMeAsync().Result;
-            //Bot.GetWebhookInfoAsync().Result
-            //return Content(user.ToString());
-
-            //var resp = await ExecQueryAsync(token, "GetMe");
-            //var x = JsonConvert.SerializeObject(resp, Formatting.Indented);
-            //return View("Main", resp);
-
-            return View("Main", await ExecQueryAsync("GetMe"));
-        }
-        public async Task<IActionResult> GetWebhookInfo()
-        {
-            if (string.IsNullOrEmpty(Token))
-                return View("Main", "Не задан токен!");
-            else
-                return View("Main", await ExecQueryAsync("GetWebhookInfo"));
-        }
-
-        public async Task<IActionResult> GetUpdates()
-        {
-            if (string.IsNullOrEmpty(Token))
-                return View("Main", "Не задан токен!");
-            else
-                return View("Main", await ExecQueryAsync("GetUpdates"));
-        }
 
         public async Task<IActionResult> SetBotToken(string token)
         {

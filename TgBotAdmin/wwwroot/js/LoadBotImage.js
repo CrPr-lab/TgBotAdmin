@@ -11,4 +11,14 @@
             "https://api.telegram.org/file/bot" + token + "/" + path;
     });
 
+    document.querySelectorAll("button[data-tg-command]").forEach((item) => {
+        item.addEventListener("click", async () => {
+            console.log("/Admin/ExecuteTgCommand/" + item.getAttribute("data-tg-command"));
+            let response = await fetch("/Admin/ExecuteTgCommand/" + item.getAttribute("data-tg-command"));
+            let text = await response.text();
+            console.log("text=" + text);
+            document.getElementById("TextareaOutput").innerText = text;
+        });
+    });
+
 });
