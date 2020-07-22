@@ -16,7 +16,10 @@ namespace TgBotAdmin
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.InputFormatters.Insert(0, new RawJsonBodyInputFormatter());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,13 +35,14 @@ namespace TgBotAdmin
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "Main",
-                    pattern: "{controller=Admin}/{action=Main}/{token:regex(^\\d{{10}}:[\\w\\-]{{35}}$)?}");
+                //endpoints.MapControllers();
+                //endpoints.MapControllerRoute(
+                //    name: "Main",
+                //    pattern: "{controller=Admin}/{action=Main}/{token:regex(^\\d{{10}}:[\\w\\-]{{35}}$)?}");
                 
 
                 //endpoints.MapDefaultControllerRoute();
-                //endpoints.MapFallbackToController("Main", "Admin");
+                endpoints.MapFallbackToController("Main", "Admin");
             });
         }
     }
